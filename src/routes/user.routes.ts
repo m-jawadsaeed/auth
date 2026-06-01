@@ -23,18 +23,7 @@ import { roleSchema } from "../validators/user.validator";
 const router = Router();
 
 /**
- * @swagger
- * tags:
- *   name: Users
- *   description: User APIs
- */
-
-/**
- * @swagger
- * /api/users/profile:
- *   get:
- *     summary: Current User Profile
- *     tags: [Users]
+ * Current authenticated user's profile
  */
 router.get(
   "/profile",
@@ -43,11 +32,7 @@ router.get(
 );
 
 /**
- * @swagger
- * /api/users:
- *   get:
- *     summary: Get All Users
- *     tags: [Users]
+ * Admin: Get all users
  */
 router.get(
   "/",
@@ -57,11 +42,7 @@ router.get(
 );
 
 /**
- * @swagger
- * /api/users/{id}:
- *   delete:
- *     summary: Delete User
- *     tags: [Users]
+ * Admin: Delete user
  */
 router.delete(
   "/:id",
@@ -71,11 +52,7 @@ router.delete(
 );
 
 /**
- * @swagger
- * /api/users/{id}/role:
- *   patch:
- *     summary: Update User Role
- *     tags: [Users]
+ * Admin: Update user role
  */
 router.patch(
   "/:id/role",
@@ -85,6 +62,9 @@ router.patch(
   asyncHandler(updateRoleController)
 );
 
+/**
+ * Admin: Analytics dashboard
+ */
 router.get(
   "/analytics",
   authenticate,
@@ -92,6 +72,9 @@ router.get(
   asyncHandler(analyticsController)
 );
 
+/**
+ * Admin: Signup statistics
+ */
 router.get(
   "/stats/signups",
   authenticate,
@@ -99,6 +82,9 @@ router.get(
   asyncHandler(signupStatsController)
 );
 
+/**
+ * Admin: Role distribution statistics
+ */
 router.get(
   "/stats/roles",
   authenticate,

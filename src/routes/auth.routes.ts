@@ -21,20 +21,6 @@ import {
 
 const router = Router();
 
-/**
- * @swagger
- * tags:
- *   name: Auth
- *   description: Authentication APIs
- */
-
-/**
- * @swagger
- * /api/auth/register:
- *   post:
- *     summary: Register User
- *     tags: [Auth]
- */
 router.post(
   "/register",
   authLimiter,
@@ -42,13 +28,6 @@ router.post(
   asyncHandler(registerController)
 );
 
-/**
- * @swagger
- * /api/auth/login:
- *   post:
- *     summary: Login User
- *     tags: [Auth]
- */
 router.post(
   "/login",
   authLimiter,
@@ -56,26 +35,12 @@ router.post(
   asyncHandler(loginController)
 );
 
-/**
- * @swagger
- * /api/auth/refresh:
- *   post:
- *     summary: Refresh Tokens
- *     tags: [Auth]
- */
 router.post(
   "/refresh",
   validate(refreshSchema),
   asyncHandler(refreshController)
 );
 
-/**
- * @swagger
- * /api/auth/logout:
- *   post:
- *     summary: Logout User
- *     tags: [Auth]
- */
 router.post(
   "/logout",
   validate(refreshSchema),

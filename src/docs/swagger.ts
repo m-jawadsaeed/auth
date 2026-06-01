@@ -1,39 +1,52 @@
-import swaggerJsdoc from "swagger-jsdoc";
+import { authPaths } from "./auth.swagger";
+import { userPaths } from "./user.swagger";
+import { schemas } from "./schemas.swagger";
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
+export const swaggerSpec = {
+  openapi: "3.0.0",
 
-    info: {
-      title: "Secure Auth API",
-      version: "1.0.0",
-      description: "Authentication and RBAC API",
-    },
-
-    servers: [
-      {
-        url: "http://localhost:5000",
-      },
-    ],
-
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
-        },
-      },
-    },
-
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
+  info: {
+    title: "AuthShield API",
+    version: "1.0.0",
+    description:
+      "JWT Authentication, Refresh Token Rotation, RBAC, PostgreSQL, Zod Validation",
   },
 
-  apis: ["./src/routes/*.ts"],
-};
+  servers: [
+    {
+      url: "http://localhost:5000",
+    },
+  ],
 
-export const swaggerSpec = swaggerJsdoc(options);
+  tags: [
+    {
+      name: "Auth",
+      description: "Authentication APIs",
+    },
+    {
+      name: "Users",
+      description: "User Management APIs",
+    },
+    {
+      name: "Analytics",
+      description: "Analytics APIs",
+    },
+  ],
+
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+
+    schemas,
+  },
+
+  paths: {
+    ...authPaths,
+    ...userPaths,
+  },
+};
