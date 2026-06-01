@@ -9,15 +9,13 @@ export const env = {
 
   dbPort: Number(process.env.DB_PORT),
 
-  dbUser: process.env.DB_USER!,
+  dbUser: process.env.POSTGRES_USER!,
 
-  dbPassword: process.env.DB_PASSWORD!,
+  dbPassword: process.env.POSTGRES_PASSWORD!,
 
-  dbName: process.env.DB_NAME!,
+  dbName: process.env.POSTGRES_DB!,
 
-  accessTokenSecret:
-    process.env.ACCESS_TOKEN_SECRET!,
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET!,
 
-  refreshTokenSecret:
-    process.env.REFRESH_TOKEN_SECRET!,
+  refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET!,
 };
